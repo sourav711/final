@@ -1,0 +1,14 @@
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\bin\Debug\netcoreapp2.1\cg_docs.deps.json
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\bin\Debug\netcoreapp2.1\cg_docs.runtimeconfig.json
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\bin\Debug\netcoreapp2.1\cg_docs.runtimeconfig.dev.json
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\bin\Debug\netcoreapp2.1\cg_docs.dll
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\bin\Debug\netcoreapp2.1\cg_docs.pdb
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.csproj.CoreCompileInputs.cache
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.RazorAssemblyInfo.cache
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.RazorAssemblyInfo.cs
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.AssemblyInfoInputs.cache
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.AssemblyInfo.cs
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.RazorTargetAssemblyInfo.cache
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.dll
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.pdb
+C:\Users\sourav.kumar\source\repos\cg_docs\cg_docs\obj\Debug\netcoreapp2.1\cg_docs.csprojAssemblyReference.cache
