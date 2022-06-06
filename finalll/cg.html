@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cg.css">
+    <script src="https://kit.fontawesome.com/37beeb989c.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- <link rel="stylesheet" href="folder.css"> -->
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+   
+      <header class="page-header">
+        <nav>
+          <a href="#0" aria-label="forecastr logo" class="logo">
+         <h2>CG DOCS</h2>
+          </a>
+          <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+            <svg width="20" height="20" aria-hidden="true">
+              <use xlink:href="#down"></use>
+            </svg>
+          </button>
+          <ul class="admin-menu">
+            <li class="menu-heading">
+              <h3>Admin</h3>
+            </li>
+           
+            <li>
+                <a href="#">
+                  <label class="dropdown">
+
+                    <div class=" create dd-button">
+                      <i class="fa-solid fa-plus"></i>
+                     <span id="dropdown">CREATE </span> 
+                    </div>
+                  
+                    <input type="checkbox" class="dd-input" id="test">
+                  
+                    <ul class="dd-menu">
+                    <li>
+                  <!-- <button type="button" id="custom-button" data-toggle="modal" data-target="#exampleModalCenterfile">CHOOSE A FILE</button> -->
+                  
+                  <!-- <button class="btn btn-danger" data-toggle="modal" type="button" data-target="#exampleModalCenterfile">Choose a File</button> -->
+                  
+                   </li> 
+                    
+                  </li>
+                
+                      <!-- <li><input  style = "display: none;" type="file" id="folder" webkitdirectory multiple/></li> -->
+                      
+                      <button  type="button" class=" firstbtn btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Choose a Folder</button>
+                      <!-- <li class="divider"></li> -->
+                      <li>
+                        
+                  
+                  <!-- Trigger/Open The Modal -->
+                  <!-- <button class="popUpBtn" data-modal="myModal1">Create Folder</button> -->
+                  
+                  
+                  <!-- The Modal1 -->
+                   <div id="myModal1" class="modal"> 
+                  
+                    <!-- Modal content -->
+                   
+                         <!-- <button   class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Choose a Folder</button> -->
+                      
+                        
+                  <!--   <input type="text" id="html" name="fav_language" placeholder="create Folder">  -->
+                   
+                   
+                      </div> 
+                      <div class="modal-footer">
+                      
+                       <button type="button"  class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentercreatefile">create a Folder</button>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  
+                  <!-- The Modal2 -->
+                  
+                      </li>
+                    </ul>
+                    
+                  </label>
+                
+                </a>
+                
+            </li>
+            <li>
+              <a href="#0">
+                <i class="fa-solid fa-user"></i>
+                <span>PROFILE</span>
+              </a>
+            </li>
+            <li>
+              <a href="#0">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>RECENTS</span>
+              </a>
+            </li>
+            
+            
+            
+            </li>
+            <li class="menu-heading">
+              <h3>Settings</h3>
+            </li>
+            <li>
+              <a href="#0">
+                <i class=" logout fa-solid fa-right-from-bracket"></i>
+                <i class='bx bx-log-out'></i>
+                <span> <button id ="logoutbtn"  onclick="logout() " type ="button" >Logout</button> </span>
+              </a>
+            </li>
+            <li>
+              
+            </li>
+            <li>
+              
+            </li>
+            <li>
+            
+          </ul>
+        </nav>
+      </header>
+       
+<div class="modal fade" id="exampleModalCenterfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Upload a file</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <img src="" class="uploadimg" alt="image">
+        </div>
+        <div class="modal-footer">
+          <input style ="display: none;" type="file" id="real-file" hidden="hidden"  />
+          <button onclick="displayfileModal()" type="button" value="upload" class="btn btn-primary">Choose file</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+       
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upload a folder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <img src="" class="uploadimg" alt="image">
+              </div>
+              <div class="modal-footer">
+                <input  style = "display: none;" type="file" id="folder" webkitdirectory multiple/>
+                <button onclick="displayModal()" type="button" value="upload" class="btn btn-primary">Choose folder</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Create a folder -->
+        <div class="modal fade" id="exampleModalCentercreatefile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create a folder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+           <input  id= "folderr" type="text" placeholder="Folders  Name">
+              </div>
+              <div class="modal-footer">
+     
+                <button onclick="createfolder()" type="button" value="upload" class="btn btn-primary">Create folder</button> </form>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <section class="page-content">
+        <section class="search-and-user">
+          <form>
+            <input  type="search" id="search1" placeholder="Search Folders....">
+            <button type="button" onclick="searchItem()" id="searchbtn" aria-label="submit form">
+              <svg aria-hidden="true">
+                <use xlink:href="#search"></use>
+              </svg>
+             
+            </button>
+         
+            
+          </form>
+          
+          <div class="admin-profile">
+           <i class=' gridview bx bxs-grid'></i> 
+           
+            <span class="greeting">Hi <span id="admin"></span> </span>
+            <div class="notifications">
+              <span class="badge">1</span>
+              <i class="fa-solid fa-user"></i>
+              
+            </div>
+          </div>
+        </section>
+        <section class="grid" id ="create">
+
+          
+        
+
+        </section>
+        
+   
+        <script src="cg.js"></script>
+        <!-- <script src="folder.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
