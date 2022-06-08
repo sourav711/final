@@ -1,6 +1,4 @@
-// const html = document.documentElement;
-// const body = document.body;
-// import { constants } from './constants.js'
+{/* <i class=" dots fa-solid fa-ellipsis-vertical"></i> */}
 const constants = {
   apiBasePath: 'https://localhost:44392/api'
 }
@@ -9,69 +7,6 @@ console.log(id);
 var adminname=sessionStorage.getItem("name");
 console.log(adminname);
 
-// const menuLinks = document.querySelectorAll(".admin-menu a");
-// const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
-// const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
-// const switchInput = document.querySelector(".switch input");
-// const switchLabel = document.querySelector(".switch label");
-// const switchLabelText = switchLabel.querySelector("span:last-child");
-// const collapsedClass = "collapsed";
-// const lightModeClass = "light-mode";
-
-// /*TOGGLE HEADER STATE*/
-// collapseBtn.addEventListener("click", function () {
-//   body.classList.toggle(collapsedClass);
-//   this.getAttribute("aria-expanded") == "true"
-//     ? this.setAttribute("aria-expanded", "false")
-//     : this.setAttribute("aria-expanded", "true");
-//   this.getAttribute("aria-label") == "collapse menu"
-//     ? this.setAttribute("aria-label", "expand menu")
-//     : this.setAttribute("aria-label", "collapse menu");
-// });
-
-// /*TOGGLE MOBILE MENU*/
-// toggleMobileMenu.addEventListener("click", function () {
-//   body.classList.toggle("mob-menu-opened");
-//   this.getAttribute("aria-expanded") == "true"
-//     ? this.setAttribute("aria-expanded", "false")
-//     : this.setAttribute("aria-expanded", "true");
-//   this.getAttribute("aria-label") == "open menu"
-//     ? this.setAttribute("aria-label", "close menu")
-//     : this.setAttribute("aria-label", "open menu");
-// });
-
-// /*SHOW TOOLTIP ON MENU LINK HOVER*/
-// for (const link of menuLinks) {
-//   link.addEventListener("mouseenter", function () {
-//     if (
-//       body.classList.contains(collapsedClass) &&
-//       window.matchMedia("(min-width: 768px)").matches
-//     ) {
-//       const tooltip = this.querySelector("span").textContent;
-//       this.setAttribute("title", tooltip);
-//     } else {
-//       this.removeAttribute("title");
-//     }
-//   });
-// }
-
-// /*TOGGLE LIGHT/DARK MODE*/
-// if (localStorage.getItem("dark-mode") === "false") {
-//   html.classList.add(lightModeClass);
-//   switchInput.checked = false;
-//   switchLabelText.textContent = "Light";
-// }
-
-// switchInput.addEventListener("input", function () {
-//   html.classList.toggle(lightModeClass);
-//   if (html.classList.contains(lightModeClass)) {
-//     switchLabelText.textContent = "Light";
-//     localStorage.setItem("dark-mode", "false");
-//   } else {
-//     switchLabelText.textContent = "Dark";
-//     localStorage.setItem("dark-mode", "true");
-//   }
-// });
 
 var curr=new Date();
 	// var DateTime=curr.getFullYear()+"-"+curr.getMonth()+"-"+curr.getDay()+" "+ curr.getHours() + ":" 
@@ -84,9 +19,7 @@ function createfolder() {
   {
    fetch('https://localhost:44392/api/values', {
      body: JSON.stringify({
-      // "folderName": form.value,
-      // "createdBy": id,
-      // "isDeleted": 0,
+      
       "folderName": form.value,
         "createdBy": id,
         "createdAt": curr.toISOString(),
@@ -129,26 +62,27 @@ function listFolders() {
     // console.log(fold);
     art.innerHTML = `
     
-    <i class='fa-solid  fa-4x fa-folder'> <label class="dropdown">
+    <i class='fa-solid folder fa-3x fa-folder'> <label class="dropdown">
   
 
-        <div class="dd-button">
-        <i class=" dots fa-solid fa-ellipsis-vertical"></i>
+        <div class=" dropdowndiv dd-button">
+         <i class=" dots fa-solid fa-ellipsis-vertical"></i> 
+        
         </div>
       
         <input type="checkbox" class="dd-input" id="test">
       
-        <ul class="dd-menu">
-          <li><button id="viewdetails" type="button" onclick="viewDetail(${folderId})" >view details</button></li>
+        <ul class=" menulist dd-menu">
+          <li class="menuu" ><button id="viewdetails"  type="button" onclick="viewDetail(${folderId})" >view details</button></li>
          
           <li class="divider"></li>
           
-           <button id="viewdetails" type="button" onclick="deletefolder(${folderId})" >Delete the Folder</button>
+          <li class="menuu" > <button id="viewdetails" type="button" onclick="sendToTrash(${folderId})" >Delete  Folder</button></li>
           
         </ul>
          
       </label>
-    <button onclick=openfile(${folderId}) style="font-size:   40px; color: black; text-decoration: none;position: relative;left: 20px;bottom: 20px;cursor: pointer;">${fold}</button>
+    <button onclick=openfile(${folderId}) class="folderName">${fold}</button>
     
     </i>`;
     create.appendChild(art);
@@ -207,28 +141,29 @@ function searchItem() {
     const folderId=folder.foldersId;
     art.innerHTML = `
     
-    <i class='fa-solid  fa-4x fa-folder'> <label class="dropdown">
+    <i class='fa-solid  fa-3x fa-folder'> <label class="dropdown">
   
 
-        <div class="dd-button">
-        <i class=" dots fa-solid fa-ellipsis-vertical"></i>
-        </div>
-      
-        <input type="checkbox" class="dd-input" id="test">
-      
-        <ul class="dd-menu">
-          <li><button id="viewdetails" type="button" onclick="viewDetail(${folderId})" >view details</button></li>
-         
-          <li class="divider"></li>
-          
-           <button id="viewdetails" type="button" onclick="deletefolder(${folderId})" >Delete the Folder</button>
-          
-        </ul>
-         
-      </label>
-    <button onclick=openfile(${folderId}) style="font-size:   40px; color: black; text-decoration: none;position: relative;left: 20px;bottom: 20px;cursor: pointer;">${fold}</button>
+    <div class=" dropdowndiv dd-button">
+     <i class=" dots fa-solid fa-ellipsis-vertical"></i> 
     
-    </i>`;
+    </div>
+  
+    <input type="checkbox" class="dd-input" id="test">
+  
+    <ul class=" menulist dd-menu">
+      <li class="menuu" ><button id="viewdetails"  type="button" onclick="viewDetail(${folderId})" >view details</button></li>
+     
+      <li class="divider"></li>
+      
+      <li class="menuu" > <button id="viewdetails" type="button" onclick="sendToTrash(${folderId})" >Delete  Folder</button></li>
+      
+    </ul>
+     
+  </label>
+<button onclick=openfile(${folderId}) style="font-size:   40px; color: black; text-decoration: none;position: relative;left: 20px;bottom: 20px;cursor: pointer;">${fold}</button>
+
+</i>`;
     create.appendChild(art);
     });
   })
@@ -256,37 +191,160 @@ fetch('https://localhost:44392/api/New/'+ fold )
 
 
 //deleting a folder
-function deletefolder(folder) {
-  debugger;
-  var raw = "";
-var requestOptions = {
+// function deletefolder(folder) {
+//   debugger;
+//   var raw = "";
+// var requestOptions = {
 
-  method: 'DELETE',
+//   method: 'DELETE',
 
-  body: raw,
+//   body: raw,
 
-  redirect: 'follow'
+//   redirect: 'follow'
 
-};
-
-
-
-let deleteurl = "https://localhost:44392/api/Values/" + folder;
+// };
 
 
 
+// let deleteurl = "https://localhost:44392/api/Values/" + folder;
 
-fetch(deleteurl,requestOptions)
 
-.then(response=>response.text())
 
-.then(result => console.log(result))
 
-  .catch(error => console.log('error', error));
+// fetch(deleteurl,requestOptions)
 
-  location.reload();  
+// .then(response=>response.text())
 
+// .then(result => console.log(result))
+
+//   .catch(error => console.log('error', error));
+
+//   location.reload();  
+
+
+
+// }
+
+
+//  
+
+// const grid = document.getElementsByClassName('gridview');
+
+
+  function gridchange() {
+    debugger  
+    const grid = document.getElementById('create');
+    console.log(grid);
+    if(grid.className == "grid")
+    {
+      grid.setAttribute('class' , "flex");
+      return;
+    }
+    else if ( grid.className == "flex")
+    {
+      grid.setAttribute("class" , "grid");
+    }
+    else
+    {
+
+    }
+    }
+
+
+    function sendToTrash(folderId){
+      debugger;
+  var requestOptions = {
+    method: 'PUT',
+    redirect: 'follow'
+  };
+  
+  fetch("https://localhost:44392/api/values/"+folderId, requestOptions)
+    .then(response => response.text())
+    .then(result =>{
+      console.log(result)
+      listFolders()})
+    .catch(error => console.log('error', error));
+}
+
+function visibility()
+{
+
+  const visible = document.getElementById('span');
+  const visible2 = document.getElementById('span1');
+  
+  visible.setAttribute('class', 'visible');
+  visible2.setAttribute('class', 'visible');
 
 
 }
 
+
+
+
+
+//responsive
+const html = document.documentElement;
+const body = document.body;
+const menuLinks = document.querySelectorAll(".admin-menu a");
+const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
+const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
+const switchInput = document.querySelector(".switch input");
+const switchLabel = document.querySelector(".switch label");
+const switchLabelText = switchLabel.querySelector("span:last-child");
+const collapsedClass = "collapsed";
+const lightModeClass = "light-mode";
+
+//TOGGLE HEADER STATE/
+collapseBtn.addEventListener("click", function () {
+  body.classList.toggle(collapsedClass);
+  this.getAttribute("aria-expanded") == "true"
+    ? this.setAttribute("aria-expanded", "false")
+    : this.setAttribute("aria-expanded", "true");
+  this.getAttribute("aria-label") == "collapse menu"
+    ? this.setAttribute("aria-label", "expand menu")
+    : this.setAttribute("aria-label", "collapse menu");
+});
+
+//TOGGLE MOBILE MENU/
+toggleMobileMenu.addEventListener("click", function () {
+  body.classList.toggle("mob-menu-opened");
+  this.getAttribute("aria-expanded") == "true"
+    ? this.setAttribute("aria-expanded", "false")
+    : this.setAttribute("aria-expanded", "true");
+  this.getAttribute("aria-label") == "open menu"
+    ? this.setAttribute("aria-label", "close menu")
+    : this.setAttribute("aria-label", "open menu");
+});
+
+//SHOW TOOLTIP ON MENU LINK HOVER/
+for (const link of menuLinks) {
+  link.addEventListener("mouseenter", function () {
+    if (
+      body.classList.contains(collapsedClass) &&
+      window.matchMedia("(min-width: 768px)").matches
+    ) {
+      const tooltip = this.querySelector("span").textContent;
+      this.setAttribute("title", tooltip);
+    } else {
+      this.removeAttribute("title");
+    }
+  });
+}
+
+//TOGGLE LIGHT/DARK MODE/
+if (localStorage.getItem("dark-mode") === "false") {
+  html.classList.add(lightModeClass);
+  switchInput.checked = false;
+  switchLabelText.textContent = "Light";
+}
+
+switchInput.addEventListener("input", function () {
+  html.classList.toggle(lightModeClass);
+  if (html.classList.contains(lightModeClass)) {
+    switchLabelText.textContent = "Light";
+    localStorage.setItem("dark-mode", "false");
+  } else {
+    switchLabelText.textContent = "Dark";
+    localStorage.setItem("dark-mode", "true");
+  }
+});

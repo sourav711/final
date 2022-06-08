@@ -33,7 +33,7 @@ namespace cg_docs.Controllers
         {
             try
             {
-                var result = _cgcontext.Folders.Where(obj => obj.CreatedBy == id);
+                var result = _cgcontext.Folders.Where(obj => obj.CreatedBy == id&&obj.IsDeleted==false);
 
                 if (result == null) return NotFound();
 
@@ -79,12 +79,24 @@ namespace cg_docs.Controllers
 
         }
 
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(int id)
+        {
+            int m = 0;
+            try
+            {
+                var newobj = _cgcontext.Folders.First(obj => obj.FoldersId == id);
+                newobj.IsDeleted = true;
+                _cgcontext.Folders.Update(newobj);
+                _cgcontext.SaveChanges();
+                m = 200;
+            }
+            catch (Exception e)
+            {
+                m = 404;
+            }
+            return StatusCode(m);
+        }
 
         [HttpDelete("{id}")]
         public void Delete(int id)

@@ -64,32 +64,9 @@ alert("Login Credentials are wrong");
 
 
 
-// var token;
-//  function sesstorage (result) {
- 
-//   sessionStorage.setItem('token', result);
-// console.log(result);
-// token=result;
-// console.log(token);
-// addclass(token);
-// }
-// function addclass(token) {
-// 	console.log("inside addclass fun")
-// 	if ( !token=== null) {
-//         console.log("this is a form");
-// 	  window.location.href="admin.html";
-// 	  } else
-//  {
-	  
-// 	  console.log("inside id token is null");
-// 	  alert("hello");
-//  	// const form = document.getElementById('form').action = '/admin.html';
-//  }
-//  }
- 
 
 
-// //  sessionStorage.getItem(token)
+
 
 //open loginpage
  async function openpage() {

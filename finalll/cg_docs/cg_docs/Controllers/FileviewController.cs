@@ -24,7 +24,24 @@ namespace cg_docs.Controllers
         {
             try
             {
-                var result = _cgcontext.Documents.First(obj => obj.DocumentId == id);
+                var result = _cgcontext.Documents.Where(obj => obj.FolderId == id&&obj.IsDeleted==true);
+
+                if (result == null) return NotFound();
+
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
+        [HttpGet("{docid}")]
+        public IActionResult Get(int docid)
+        {
+            try
+            {
+                var result = _cgcontext.Documents.Where(obj => obj.DocumentId == docid );
 
                 if (result == null) return NotFound();
 

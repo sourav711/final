@@ -4,7 +4,9 @@
 {
     padding: 0;
     margin: 0;
-    background-color: rgb(23, 238, 238);
+    background-color: #d9d9d9; 
+       
+
     
 }
 
@@ -16,7 +18,8 @@
 {
     
     display: flex;
-     align-items: center; 
+     align-items: center;
+     background-color: #d9d9d9; 
     
     
 }
@@ -50,7 +53,7 @@
     height: 50px;
    width: 120px;
    font-size: 20px;
-   
+   background: #d9d9d9;
    border: none;
    border-radius: 25px;
    cursor: pointer;
@@ -125,3 +128,23 @@ font-style: italic;
     padding-top: 10px;
     padding-left: 45px;
 } 
+/* 
+@media only screen and (min-wid) {
+    body {
+      background-color: lightblue;
+    }
+  } */
+
+
+  @media only screen and (max-width: 600px) {
+
+    .navbar{
+        height: 20%;
+        flex-direction: column;
+
+        
+    }
+    
+
+}
+  

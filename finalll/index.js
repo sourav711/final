@@ -44,6 +44,6 @@ function sendData(){
 	function showNext(result){
 		
 		console.log(result);
-		window.location.href="log.html";
+		window.location.href="loginpage.html";
 	}
 

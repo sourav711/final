@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using cg_docs.Models;
+
 using cg_docs.RequestModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +12,7 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Reflection.Metadata;
 using Microsoft.CodeAnalysis;
+using cg_docs.Models;
 
 namespace cg_docs.Controllers
 {
@@ -40,7 +41,7 @@ namespace cg_docs.Controllers
         {
             try
             {
-                var result = _cgcontext.Documents.Where(obj => obj.FolderId == id);
+                var result = _cgcontext.Documents.Where(obj => obj.FolderId == id&& obj.IsDeleted==false);
 
                 if (result == null) return NotFound();
 
@@ -64,7 +65,7 @@ namespace cg_docs.Controllers
                 obj.DocumentName = value.DocumentName;
                 obj.ContentType = value.ContentType;
                 obj.Size = value.Size;
-                obj.CreatedAt = value.CreatedAt;
+                obj.CreatedAt = value.CreatedAt;    
                 obj.CreatedBy = value.CreatedBy;
                 obj.IsDeleted = value.IsDeleted;
                 obj.FolderId = value.FolderId;
@@ -79,7 +80,7 @@ namespace cg_docs.Controllers
         }
         [HttpPost]
         [Route("upload")]
-        public async Task<ActionResult> Upload(List<IFormFile> files)
+        public async Task<ActionResult> Upload(List<IFormFile> files,DateTime createdAt,int createdBy,int folderId,bool isDeleted)
         {
             long size = files.Sum(f => f.Length);
             var rootPath = Path.Combine(_environment.ContentRootPath, "Resources", "Documents");
@@ -95,16 +96,21 @@ namespace cg_docs.Controllers
                         DocumentName = file.FileName,
                         ContentType = file.ContentType,
                         Size = file.Length,
-                
+                        CreatedAt =createdAt,
+                        CreatedBy = createdBy,
+                        FolderId=folderId,
+                        IsDeleted=isDeleted
+                    
 
-
-
-                    };
+                };
                     await file.CopyToAsync(stream);
+
                     _cgcontext.Documents.Add(Documents);
                     await _cgcontext.SaveChangesAsync();
                 }
             }
+          
+
             return Ok(new { count = files.Count, size });
         }
         [HttpPost]
@@ -150,7 +156,24 @@ namespace cg_docs.Controllers
             var result = _cgcontext.Documents.Where(obj => obj.DocumentName.Contains(value));
             return Ok(result);
         }
-
+        [HttpPut("{id}")]
+        public IActionResult Put(int id)
+        {
+            int m = 0;
+            try
+            {
+                var newobj = _cgcontext.Documents.First(obj => obj.DocumentId == id);
+                newobj.IsDeleted = true;
+                _cgcontext.Documents.Update(newobj);
+               _cgcontext.SaveChanges();
+                m = 200;
+            }
+            catch (Exception e)
+            {
+                m = 404;
+            }
+            return StatusCode(m);
+        }
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
@@ -163,7 +186,7 @@ namespace cg_docs.Controllers
         public IActionResult Get(string value, int id,int userid)
         {
 
-            var result = _cgcontext.Documents.Where(e=>e.CreatedBy==userid).Where(o => o.FolderId == id).Where(obj => obj.DocumentName.Contains(value));
+            var result = _cgcontext.Documents.Where(e=>e.CreatedBy==userid).Where(o => o.FolderId == id).Where(obj => obj.DocumentName.Contains(value)&&obj.IsDeleted==false);
             return Ok(result);
         }
     }

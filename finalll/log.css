@@ -32,7 +32,7 @@ body {
   font-size: var(--font-size);
   font-family: var(--font-family);
   line-height: 1.2;
-  background-color: aqua;
+  background-color: lightgray
 }
 
 a {
@@ -219,7 +219,7 @@ input:focus {
     
     display: flex;
      align-items: center; 
-     background-color: aqua ;
+     background-color: lightgray ;
     width: 100%;
     position: relative;
     bottom: 20px;
@@ -257,7 +257,7 @@ input:focus {
     height: 50px;
    width: 120px;
    font-size: 20px;
-   background: aqua;
+   
    
    border: none;
    border-radius: 25px;

@@ -5,15 +5,18 @@ const constants = {
   console.log(id);
   var adminname=sessionStorage.getItem("name");
   console.log(adminname);
+  var folderid=sessionStorage.getItem("folderId");
+  var curr=new Date();
+  var date=curr.toISOString();
   
  
-var curr=new Date();
+
 // var DateTime=curr.getFullYear()+"-"+curr.getMonth()+"-"+curr.getDay()+" "+ curr.getHours() + ":" 
 // + curr.getMinutes() + ":" + curr.getSeconds();
 const form = document.getElementById("folderr");
 console.log(form);
 
-function createfolder() {
+function createFolder() {
 try
 {
  fetch('https://localhost:44392/api/Document', {
@@ -129,8 +132,9 @@ catch(err)
 
     var val=document.getElementById("search1");
     console.log(val.value);
+    
   
-    var url="https://localhost:44392/api/Values/"+val.value+","+id;
+    var url="https://localhost:44392/api/Document/"+val.value+","+folderid+","+id;
   
     fetch(url)
   
@@ -143,7 +147,7 @@ catch(err)
     
       var create = document.getElementById("create");
       var art = document.createElement("article");
-      const fold = folder.folderName;
+      const fold = folder.documentName;
       
       // fold.style.backgroundColor = "red";
       // console.log(fold);
@@ -183,7 +187,7 @@ catch(err)
 
   function choosefiles () {
     debugger;
-      let value = choose.files[0].name;
+     
         try
         {
          fetch('https://localhost:44392/api/Document', {
@@ -237,33 +241,26 @@ catch(err)
  const docId=folder.documentId;
             // fold.style.backgroundColor = "red";
             // console.log(fold);
-            art.innerHTML = `<i class=" filei fa-2x fa-solid fa-file"></i>
+            art.innerHTML = `<i class=" filei fa-3x fa-solid fa-file"></i>
             <label class="dropdown">
         
       
             <div class="dd-button btnn">
-            <i class=" drop fa-solid fa-ellipsis-vertical"></i>
+            <i onclick="sendToTrash(${docId})" class="trash fa-solid fa-trash-can"></i>
             
           
             <input type="checkbox" class="dd-input" id="test">
           
-            <ul class="dd-menu " style ="position: relative;
-            right: 99px;
-        ">
-              <li><button id="viewdetails" type="button" onclick="viewDetail(${docId})" >view details</button></li>
-             
-              <li class="divider"></li>
-              
-               <button id="viewdetails" type="button" onclick="deletefile(${docId})" >Delete the Folder</button>
-              
-            </ul>
+            
             </div>
-             
+            <i onclick = "downloadFile(${docId})" class=" download fa-solid fa-download"></i>
           </label>
            
-            <button style="font-size:  20px;text-decoration: none;position: relative;left: 400px;bottom: 2px;cursor: pointer;">${fold}</button>
+            <button  onclick="viewFile(${docId})" class="documentName">${fold}</button>
             
             </i>`;
+            
+           
             create.appendChild(art);
             });
           })
@@ -276,33 +273,34 @@ catch(err)
         }
 
         
-function deletefile(fileid) {
+// function deletefile(fileid) {
   
 
-  var raw = "";
+//   var raw = "";
 
-var requestOptions = {
-  method: 'DELETE',
-  body: raw,
-  redirect: 'follow'
-};
+// var requestOptions = {
+//   method: 'DELETE',
+//   body: raw,
+//   redirect: 'follow'
+// };
 
-let deleteurl = "https://localhost:44392/api/Document/" + fileid;
+// let deleteurl = "https://localhost:44392/api/Document/" + fileid;
 
 
-fetch(deleteurl,requestOptions)
-.then(response=>response.text())
-.then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  location.reload();  
+// fetch(deleteurl,requestOptions)
+// .then(response=>response.text())
+// .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+//   location.reload();  
 
-}
+// }
 function viewDetail(fold) {
-
+debugger;
 console.log(fold);
 fetch('https://localhost:44392/api/Fileview/'+ fold )
 .then(response=>response.json())
 .then(result=>{
+  console.log(result);
    alert(
    "Document Id:" +result.documentId+
   "\nDocument Name:"+ result.documentName+
@@ -314,3 +312,93 @@ fetch('https://localhost:44392/api/Fileview/'+ fold )
 )
 })
 }
+
+
+
+
+
+
+
+
+// upload a file from local storage 
+
+function uploadFiles(){
+  
+  let value = choose.files[0];
+var formdata = new FormData();
+formdata.append("files", value);
+
+
+
+var requestOptions = {
+  method: 'POST',
+  body: formdata,
+  redirect: 'follow'
+};
+
+  fetch("https://localhost:44392/api/Document/upload?createdAt="+date+"&createdBy="+id+"&folderId="+folderid+"&isDeleted=false", requestOptions)
+  .then(response => response.text())
+  .then(result => {console.log(result)
+          listFolders()})
+  .catch(error => console.log('error', error));
+}
+
+
+  function viewFile(docId){
+    debugger;
+    var requestOptions = {
+      method: 'POST',
+      redirect: 'follow'
+    };
+    let url = "https://localhost:44392/api/Document/download/"+docId;
+    
+  fetch(url, requestOptions)
+      .then(response =>  {
+        return response.blob();
+      }).then((data) => {
+        let a = document.createElement("a");
+        a.href = window.URL.createObjectURL(data);
+      //  a.download =docId;
+        a.click();
+      });
+      }
+
+
+
+
+
+
+      function downloadFile(docId){
+        debugger;
+        var requestOptions = {
+          method: 'POST',
+          redirect: 'follow'
+        };
+        let url = "https://localhost:44392/api/Document/download/"+docId;
+        
+      fetch(url, requestOptions)
+          .then(response =>  {
+            return response.blob();
+          }).then((data) => {
+            let a = document.createElement("a");
+            a.href = window.URL.createObjectURL(data);
+            a.download =docId;
+            a.click();
+          });
+          }
+    
+
+function sendToTrash(docId, ){
+  var requestOptions = {
+    method: 'PUT',
+    redirect: 'follow'
+  };
+  
+  fetch("https://localhost:44392/api/Document/"+docId, requestOptions)
+    .then(response => response.text())
+    .then(result =>{
+      console.log(result)
+      listFolders()})
+    .catch(error => console.log('error', error));
+}
+ 
